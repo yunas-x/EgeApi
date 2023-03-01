@@ -126,9 +126,9 @@ def create_user(data=Body(), db: Session = Depends(get_db)):
                   hashedPassword=data["password"])
     
     if crud.check_player_name(db=db, name=item.name) != 0:
-        return "Name is occupied"
+        return {"id": -3}
     if crud.check_player_email(db=db, email=item.email) != 0:
-        return "Email is occupied"
+        return {"id": -4}
     
     user = crud.create_user(db=db, item=item)
     
