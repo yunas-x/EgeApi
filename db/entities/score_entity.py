@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import Column, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, DateTime, ForeignKey, String
 from sqlalchemy.orm import relationship
 
 from db.data_context import Base
@@ -12,6 +12,7 @@ class score_entity(Base):
     correctAnswered = Column(Integer, unique=False, index=False) #
     playedOn = Column(DateTime, unique=False, index=False, default=datetime.datetime.now()) #
     playerId = Column(Integer, ForeignKey("PlayerEntity.id"))
+    gameMode = Column(String,  unique=False, index=False, default='Mock')
     
     player = relationship("player_entity", back_populates="games")
     
